@@ -13,12 +13,13 @@
         </div>
         <div class="buttons">
             <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-            <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+            <button class="btn" id="noButton" onclick="moveButton()">No</button>
         </div>
     </div>
 
     <script>
         var tries = 0;
+        var moving = true;
 
         function nextPage() {
             window.location.href = "yes.html";
@@ -26,21 +27,21 @@
 
         function moveButton() {
             tries++;
-            if (tries >= 3) {
+            if (tries >= 3 && moving) {
                 document.getElementById('noButton').disabled = true;
                 document.getElementById('noButton').onclick = function() {
                     window.location.href = "no.html";
                 };
+                moving = false;
+                return;
             }
 
-            if (tries <= 3) {
-                var button = document.getElementById('noButton');
-                var container = document.querySelector('.container');
-                var x = Math.random() * (container.offsetWidth - button.offsetWidth);
-                var y = Math.random() * (container.offsetHeight - button.offsetHeight);
-                button.style.left = `${x}px`;
-                button.style.top = `${y}px`;
-            }
+            var button = document.getElementById('noButton');
+            var container = document.querySelector('.container');
+            var x = Math.random() * (container.offsetWidth - button.offsetWidth);
+            var y = Math.random() * (container.offsetHeight - button.offsetHeight);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
         }
     </script>
 </body>
