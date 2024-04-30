@@ -6,7 +6,7 @@
 <body>
     <div class="container">
         <div>
-            <h1 class="header_text">Hey Do you wanna go out with me?</h1>
+            <h1 class="header_text">Do you wanna go out with me?</h1>
         </div>
         <div class="gif_container">
             <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDRranVyejRzZjR0MnJvdDRoa3doMG1kd3IwcG1mb3VjOTJzcDFoZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H2u46cKU3VaXht6Iv9/giphy.gif" alt="Cute animated illustration">
@@ -29,19 +29,21 @@
             tries++;
             if (tries >= 3 && moving) {
                 document.getElementById('noButton').disabled = true;
-                document.getElementById('noButton').onclick = function() {
+                setTimeout(function() {
                     window.location.href = "no.html";
-                };
+                }, 500); // Redirect to "no.html" after a delay of 0.5 seconds
                 moving = false;
                 return;
             }
 
-            var button = document.getElementById('noButton');
-            var container = document.querySelector('.container');
-            var x = Math.random() * (container.offsetWidth - button.offsetWidth);
-            var y = Math.random() * (container.offsetHeight - button.offsetHeight);
-            button.style.left = `${x}px`;
-            button.style.top = `${y}px`;
+            if (moving) {
+                var button = document.getElementById('noButton');
+                var container = document.querySelector('.container');
+                var x = Math.random() * (container.offsetWidth - button.offsetWidth);
+                var y = Math.random() * (container.offsetHeight - button.offsetHeight);
+                button.style.left = `${x}px`;
+                button.style.top = `${y}px`;
+            }
         }
     </script>
 </body>
