@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./styles.css">
-        
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Do you wanna go out with me?</h1>
-            </div>
-            <div class="gif_container">
-                <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWd2bTRvaXdjb3M5ZDF1enRtenI0YXZlenNuOXZ5YmxxbXl1dXFwcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif" alt="Cute animated illustration">
-            </div>
-            <div class = "buttons">
-                <button class="btn" id = "yesButton" onclick="nextPage()">Yes</button>
-                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
-                <script>
-                    function nextPage() {
-                        window.location.href = "yes.html";
-                    }
-                    
-                    function moveButton() {
-                        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-                        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-                        document.getElementById('noButton').style.left = `${x}px`;
-                        document.getElementById('noButton').style.top = `${y}px`;
-                    }
-                </script> 
-            </div>
-        </div>
-       
-    </body> 
+<head>
+  <link rel="stylesheet" href="./styles.css">  </head>
+<body>
+  <div class="container">  <div>
+      <h1 class="header_text">Do you want to go out with me?</h1>  </div>
+    <div class="gif_container">  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWd2bTRvaXdjb3M5ZDF1enRtenI0YXZlenNuOXZ5YmxxbXl1dXFwcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/4N1wOi78ZGzSB6H7vK/giphy.gif" alt="Cute animated illustration">
+    </div>
+    <div class="buttons">  <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>  <button class="btn" id="noButton" onmouseover="moveButton()" onclick="goToNoPage()">No</button>  </div>
+  </div>
+  
+  <script>  function nextPage() {
+      window.location.href = "yes.html";  // Redirects to "yes.html" page on click
+    }
+  
+    function moveButton() {
+      var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+      var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+      document.getElementById('noButton').style.left = `${x}px`;
+      document.getElementById('noButton').style.top = `${y}px`;  // Animates "No" button on hover
+    }
+  
+    function goToNoPage() {
+      window.location.href = "no.html";  // Redirects to "no.html" page on click
+    }
+  </script>
+</body>
 </html>
