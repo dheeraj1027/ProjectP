@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="./styles.css">
-    <style>
-        #noButton {
-            position: relative;
-        }
-    </style>
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    #noButton {
+      position: relative;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1 class="header_text">Do you want to go out with me?</h1>
-        </div>
-        <div class="gif_container">
-            <img src="https://i.giphy.com/H2u46cKU3VaXht6Iv9.webp" alt="Cute animated illustration">
-        </div>
-        <div class="buttons">
-            <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
-            <button class="btn" id="noButton" onmouseover="moveButton()" onclick="goToNoPage()">No</button>
-        </div>
+  <div class="container">
+    <div>
+      <h1 class="header_text">Do you want to go out with me?</h1>
     </div>
+    <div class="gif_container">
+      <img src="https://i.giphy.com/H2u46cKU3VaXht6Iv9.webp" alt="Cute animated illustration">
+    </div>
+    <div class="buttons">
+      <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+      <button class="btn" id="noButton" onmouseover="startMoving()">No</button>
+    </div>
+  </div>
 
-    <script>
-        var tries = 0;
-        var moving = true;
+  <script>
+    var moving = false;
+    var tries = 0;
 
-        function nextPage() {
-            window.location.href = "yes.html";
-        }
+    function nextPage() {
+      window.location.href = "yes.html";
+    }
 
-        function moveButton() {
-            tries++;
-            if (tries >= 3) {
-                document.getElementById('noButton').disabled = true;
-                document.getElementById('noButton').style.left = '0px';
-                document.getElementById('noButton').style.top = '0px';
-                moving = false;
-            }
-            if (moving) {
-                var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-                var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-                document.getElementById('noButton').style.left = `${x}px`;
-                document.getElementById('noButton').style.top = `${y}px`;
-            }
-        }
+    function startMoving() {
+      moving = true;
+      tries = 0; // Reset tries on hover
+    }
 
-        function goToNoPage() {
-            if (tries >= 3) {
-                window.location.href = "no.html";
-            }
-        }
-    </script>
+    function moveButton() {
+      if (!moving) return;  // Don't move if not hovering
+
+      tries++;
+      if (tries >= 3) {
+        document.getElementById('noButton').disabled = true;
+        document.getElementById('noButton').style.left = '0px';
+        document.getElementById('noButton').style.top = '0px';
+        moving = false;
+      } else {
+        var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+        var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+        document.getElementById('noButton').style.left = `${x}px`;
+        document.getElementById('noButton').style.top = `${y}px`;
+      }
+    }
+
+    function goToNoPage() {
+      if (tries >= 3) {
+        window.location.href = "no.html";
+      }
+    }
+
+    // Call moveButton() on a regular interval (optional)
+    setInterval(moveButton, 10); // Update position every 10 milliseconds
+
+  </script>
 </body>
 </html>
