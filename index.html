@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="./styles.css">
     <style>
         #noButton {
-            position: absolute;
+            position: relative;
         }
     </style>
 </head>
@@ -14,7 +14,7 @@
             <h1 class="header_text">Do you want to go out with me?</h1>
         </div>
         <div class="gif_container">
-            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXp4Mjlpd3A5bnVqanVoNzNqMzdlM2pnb3Bjam03c29nMzlhenBrYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H2u46cKU3VaXht6Iv9/giphy.gif" alt="Cute animated illustration">
+            <img src="https://i.giphy.com/H2u46cKU3VaXht6Iv9.webp" alt="Cute animated illustration">
         </div>
         <div class="buttons">
             <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
@@ -24,25 +24,31 @@
 
     <script>
         var tries = 0;
+        var moving = true;
 
         function nextPage() {
-            window.location.href = "yes.html";  // Redirects to "yes.html" page on click
+            window.location.href = "yes.html";
         }
 
         function moveButton() {
             tries++;
             if (tries >= 3) {
                 document.getElementById('noButton').disabled = true;
+                document.getElementById('noButton').style.left = '0px';
+                document.getElementById('noButton').style.top = '0px';
+                moving = false;
             }
-            var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-            var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-            document.getElementById('noButton').style.left = `${x}px`;
-            document.getElementById('noButton').style.top = `${y}px`;  // Animates "No" button on hover
+            if (moving) {
+                var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+                var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+                document.getElementById('noButton').style.left = `${x}px`;
+                document.getElementById('noButton').style.top = `${y}px`;
+            }
         }
 
         function goToNoPage() {
             if (tries >= 3) {
-                window.location.href = "no.html";  // Redirects to "no.html" page on click
+                window.location.href = "no.html";
             }
         }
     </script>
