@@ -45,6 +45,7 @@
         document.getElementById('noButton').style.top = '0px';
         moving = false;
       } else {
+        // Update position less frequently
         var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
         var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
         document.getElementById('noButton').style.left = `${x}px`;
@@ -53,14 +54,11 @@
     }
 
     function goToNoPage() {
+      // Check tries on click regardless of current state
       if (tries >= 3) {
         window.location.href = "no.html";
       }
     }
-
-    // Call moveButton() on a regular interval (optional)
-    setInterval(moveButton, 10); // Update position every 10 milliseconds
-
   </script>
 </body>
 </html>
